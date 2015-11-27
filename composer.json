@@ -1,0 +1,12 @@
+{
+    "name": "elgg/blog",
+    "type": "elgg-plugin",
+    "repositories": [
+    	{"type": "vcs", "url": "git@github.com:juho-jaakkola/h5p-php-library.git"}
+    ],
+    "require": {
+    	"h5p/h5p-php-library": "dev-composer",
+        "composer/installers": ">=1.0.8"
+    },
+    "license": "GPL-2.0"
+}
