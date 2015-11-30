@@ -19,7 +19,7 @@ if ($action == 'add') {
 
 $title = elgg_echo("h5p:{$action}");
 
-$form = elgg_view_form('h5p/upload', array('enctype' => 'multipart/form-data'));
+$form = elgg_view_form('h5p_file/upload', array('enctype' => 'multipart/form-data'));
 
 $body = elgg_view_layout('content', array(
 	'title' => $title,

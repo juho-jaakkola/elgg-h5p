@@ -1,17 +1,27 @@
 <?php
+
+$entity = elgg_extract('entity', $vars);
+
 $lang = elgg_extract('lang', $vars);
 $content = elgg_extract('content', $vars);
 //$scripts = elgg_extract('scripts', $vars);
 $styles = elgg_extract('styles', $vars);
 $integration = elgg_extract('integration', $vars);
 
+$integration = h5p_get_core_settings();
+
+$integration['contents']["cid-{$entity->guid}"] = array(
+
+);
 
 // Get core scripts
 foreach (H5PCore::$scripts as $script) {
-	$script = str_replace('js/', '', $script);
-	elgg_require_js($script);
+	elgg_load_js($script);
+
 	elgg_dump($script);
 }
+
+$styles = array();
 ?>
 
 <!doctype html>

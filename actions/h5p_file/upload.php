@@ -27,10 +27,13 @@ if ($file->getError() !== 0) {
 
 $h5p_file = new \H5P\File();
 $h5p_file->owner_guid = $guid;
-$h5p_file->setFilename("h5p/{$file->getClientOriginalName()}.jpg");
+$h5p_file->title = $file->getClientOriginalName();
+$h5p_file->setFilename("h5p/{$file->getClientOriginalName()}");
 $h5p_file->open('write');
 $h5p_file->write(file_get_contents($file->getPathname()));
 $h5p_file->close();
 $h5p_file->save();
 
 system_message(elgg_echo('todo3'));
+
+forward($h5p_file->getURL());
