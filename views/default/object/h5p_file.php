@@ -14,12 +14,16 @@ $content = elgg_view('h5p/embed', array(
 ));
 */
 
+$html = 'TODO';
+
+/*
 h5p_add_files_and_settings($node, $embed);
 if ($embed === 'div') {
 	$html = '<div class="h5p-content" data-content-id="' .  $content_id . '"></div>';
 } else {
 	$html = '<div class="h5p-iframe-wrapper"><iframe id="h5p-iframe-' . $content_id . '" class="h5p-iframe" data-content-id="' . $content_id . '" style="height:1px" src="about:blank" frameBorder="0" scrolling="no"></iframe></div>';
 }
+*/
 
 $metadata = '';
 if (!elgg_in_context('widgets')) {

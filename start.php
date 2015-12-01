@@ -9,8 +9,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
  *
  */
 elgg_register_event_handler('init', 'system', function() {
-	$h5p = new \H5P\Framework;
-
 	elgg_register_menu_item('site', array(
 		'name' => 'h5p',
 		'href' => 'h5p',
@@ -144,4 +142,41 @@ function h5p_get_core_settings() {
 function _h5p_get_h5p_path() {
   $file_path = file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
   return $file_path . '/' . variable_get('h5p_default_path', 'h5p');
+}
+
+/**
+ * Get the different instances of the H5P core.
+ *
+ * @param string $type
+ * @return \H5PElgg|\H5PCore|\H5PContentValidator|\H5PExport|\H5PStorage|\H5PValidator
+ */
+function h5p_get_instance($type) {
+	static $interface, $core;
+
+	if ($interface === null) {
+		$interface = new \H5P\Elgg();
+
+		$language = get_current_language();
+
+		$path = elgg_get_data_path() . '/h5p';
+
+		$url = elgg_get_site_url() . 'serve-file/';
+
+		$core = new H5PCore($interface, $path, $url, $language);
+	}
+
+	switch ($type) {
+		case 'validator':
+			return new H5PValidator($interface, $core);
+		case 'storage':
+			return new H5PStorage($interface, $core);
+		case 'contentvalidator':
+			return new H5PContentValidator($interface, $core);
+		case 'export':
+			return new H5PExport($interface, $core);
+		case 'interface':
+			return $interface;
+		case 'core':
+			return $core;
+	}
 }

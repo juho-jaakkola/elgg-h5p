@@ -6,7 +6,7 @@ namespace H5P;
  *
  */
 
-class Framework implements \H5PFrameworkInterface {
+class Elgg implements \H5PFrameworkInterface {
 
 	/**
 	 * Returns info for the current platform
